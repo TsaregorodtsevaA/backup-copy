@@ -65,7 +65,8 @@ def upload_files_to_YD(ya_token):
     f_show_profile_photo = show_profile_photo('atsaregorodtseva', vk_token)
     for photos in f_show_profile_photo:
         pass
-    for el in tqdm(photos, desc= 'photo loading in progress'):
+    number_of_photos = int(input("Количество фото для загрузки: "))
+    for el in tqdm(photos[0:number_of_photos], desc= 'photo loading in progress'):
         path = el['url']
         file_name = el['file_name']
         params = {
