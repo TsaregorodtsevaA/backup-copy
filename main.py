@@ -64,19 +64,19 @@ def upload_files_to_YD(ya_token):
     response_for_folder = requests.put("https://cloud-api.yandex.net/v1/disk/resources", headers=headers, params=params_for_folder, timeout=10)
     f_show_profile_photo = show_profile_photo('atsaregorodtseva', vk_token)
     for photos in f_show_profile_photo:
-        pass
-    number_of_photos = int(input("Количество фото для загрузки: "))
-    for el in tqdm(photos[0:number_of_photos], desc= 'photo loading in progress'):
-        path = el['url']
-        file_name = el['file_name']
-        params = {
-                'url':path,
-                'path':f"/vk/{file_name}'",
-                'name': file_name,
-                'overwrite':'false'
-            }
-        response = requests.post('https://cloud-api.yandex.net/v1/disk/resources/upload', headers=headers, params=params, timeout=20)
-        time.sleep(0.5)
-    print('Uploading is finished')
+        number_of_photos = int(input("Количество фото для загрузки: "))
+        for el in tqdm(photos[0:number_of_photos], desc= 'photo loading in progress'):
+            path = el['url']
+            file_name = el['file_name']
+            params = {
+                    'url':path,
+                    'path':f"/vk/{file_name}'",
+                    'name': file_name,
+                    'overwrite':'false'
+                }
+            response = requests.post('https://cloud-api.yandex.net/v1/disk/resources/upload', headers=headers, params=params, timeout=20)
+            time.sleep(0.5)
+        print('Uploading is finished')
+        break
 show_profile_photo('atsaregorodtseva', vk_token)
 upload_files_to_YD(ya_token)
